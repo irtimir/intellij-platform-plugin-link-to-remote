@@ -1,18 +1,16 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.irtimir.intellijplatformpluginlinktoremote</id>
-    <name>IntelliJ Platform Plugin intellij-platform-plugin-link-to-remote</name>
+    <name>Link to Remote Repository</name>
     <vendor>irtimir</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.irtimir.intellijplatformpluginlinktoremote.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.irtimir.intellijplatformpluginlinktoremote.services.MyProjectService"/>
-    </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.irtimir.intellijplatformpluginlinktoremote.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+    <actions>
+        <group id="com.github.irtimir.intellijplatformpluginlinktoremote.actions.LinkRemoteActionGroup"
+               class="com.github.irtimir.intellijplatformpluginlinktoremote.actions.LinkRemoteActionGroup"
+               popup="true" text="Copy Remote Link" description="Copy remote link">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </group>
+    </actions>
 </idea-plugin>

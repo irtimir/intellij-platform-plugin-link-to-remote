@@ -119,3 +119,12 @@ tasks {
         channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
     }
 }
+
+val jgitVersion: String by project
+
+dependencies {
+    implementation(kotlin("stdlib"))
+    api("org.eclipse.jgit:org.eclipse.jgit:$jgitVersion") {
+        exclude("org.slf4j")
+    }
+}
