@@ -46,7 +46,7 @@ class LinkRemoteAction(
                 git,
                 remoteRepo.name,
                 filePath,
-                editor.caretModel.primaryCaret.visualPosition.line + 1
+                editor.caretModel.primaryCaret.logicalPosition.line + 1
             )
         } catch (exc: FileNotInRepositoryTree) {
             LOG.warning(exc.message)
