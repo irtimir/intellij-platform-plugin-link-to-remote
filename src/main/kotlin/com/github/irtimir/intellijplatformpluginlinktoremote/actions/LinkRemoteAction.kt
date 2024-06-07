@@ -6,6 +6,7 @@ import com.github.irtimir.intellijplatformpluginlinktoremote.api.linkToRemote
 import com.github.irtimir.intellijplatformpluginlinktoremote.helper.getLastRev
 import com.github.irtimir.intellijplatformpluginlinktoremote.helper.openRepository
 import com.intellij.openapi.actionSystem.ActionGroup
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
@@ -61,6 +62,10 @@ class LinkRemoteAction(
 
 
 class LinkRemoteActionGroup : ActionGroup() {
+    override fun getActionUpdateThread(): ActionUpdateThread {
+        return ActionUpdateThread.BGT
+    }
+
     override fun update(e: AnActionEvent) {
         val editor = e.dataContext.getData(PlatformDataKeys.EDITOR)
         if (editor == null) {
