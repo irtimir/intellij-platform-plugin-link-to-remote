@@ -12,3 +12,8 @@
 **Full Changelog**: https://github.com/irtimir/intellij-platform-plugin-link-to-remote/compare/0.1.0...0.1.1
 ### Added
 - Support 232-242.* IntelliJ Platform versions
+
+## [0.1.2] - 2024-06-07
+**Full Changelog**: https://github.com/irtimir/intellij-platform-plugin-link-to-remote/compare/0.1.1...0.1.2
+### Added
+- Support 233-242.* IntelliJ Platform versions
