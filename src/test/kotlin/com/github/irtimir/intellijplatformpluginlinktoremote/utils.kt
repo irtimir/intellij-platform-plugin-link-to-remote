@@ -22,7 +22,7 @@ fun commitRandomFile(git: Git): String {
         throw IOException("Could not create file $file")
     }
     git.add().addFilepattern(fileName).call()
-    git.commit().setMessage("Added $fileName").call()
+    git.commit().setMessage("Added $fileName").setSign(false).call()
     return git.log().setMaxCount(1).call().iterator().next().name
 }
 

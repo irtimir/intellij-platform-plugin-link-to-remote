@@ -7,10 +7,10 @@ import com.github.irtimir.intellijplatformpluginlinktoremote.helper.openReposito
 import org.apache.commons.io.FileUtils
 import org.eclipse.jgit.api.Git
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import java.io.File
-import kotlin.test.assertEquals
 
 class ApiTest {
     private lateinit var localRepositoryPath: File
@@ -32,11 +32,11 @@ class ApiTest {
 
     @Test
     fun testLinkToRemote() {
-        assertEquals(
+        Assert.assertEquals(
             "http://github.com/user/repo/blob/$lstSha/testfile#L4",
             linkToRemote(git, "origin", File(localRepositoryPath, "testfile").path, 4),
         )
-        assertEquals(
+        Assert.assertEquals(
             "http://github.com/user/repo/blob/$lstSha/testdir/testfile#L10",
             linkToRemote(git, "origin", File(localRepositoryPath, "testdir/testfile").path, 10),
         )

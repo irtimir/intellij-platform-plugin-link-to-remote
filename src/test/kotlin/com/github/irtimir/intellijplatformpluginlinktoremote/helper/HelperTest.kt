@@ -6,12 +6,11 @@ import org.apache.commons.io.FileUtils
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.api.errors.NoHeadException
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import java.io.File
 import java.nio.file.Files
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 
 
 class HelperTest {
@@ -33,12 +32,9 @@ class HelperTest {
         openRepository(File(localRepositoryPath, "fstLevelFile"))
         openRepository(File(localRepositoryPath, "fstLevelFile/scdLevelFile"))
 
-        assertFailsWith(
-            exceptionClass = IllegalArgumentException::class,
-            block = {
-                openRepository(File("/localPath"))
-            }
-        )
+        Assert.assertThrows(IllegalArgumentException::class.java) {
+            openRepository(File("/localPath"))
+        }
     }
 
     @Test
@@ -50,29 +46,23 @@ class HelperTest {
 
     @Test
     fun testGetLastRevNoCommits() {
-        assertFailsWith(
-            exceptionClass = NoHeadException::class,
-            block = {
-                getLastRev(Git(openRepository(localRepositoryPath)))
-            }
-        )
+        Assert.assertThrows(NoHeadException::class.java) {
+            getLastRev(Git(openRepository(localRepositoryPath)))
+        }
     }
 
     @Test
     fun testOpenRepositoryNoRepository() {
         val tmpDir = Files.createTempDirectory("TestGitRepository").toFile()
-        assertFailsWith(
-            exceptionClass = IllegalArgumentException::class,
-            block = {
-                openRepository(tmpDir)
-            }
-        )
+        Assert.assertThrows(IllegalArgumentException::class.java) {
+            openRepository(tmpDir)
+        }
     }
 
     @Test
     fun testNormalizeRepositoryUrl() {
-        assertEquals("http://github.com/user/repo", normalizeRemoteUrl("http://github.com/user/repo.git"))
-        assertEquals("https://github.com/user/repo", normalizeRemoteUrl("https://github.com/user/repo.git"))
-        assertEquals("https://github.com/user/repo", normalizeRemoteUrl("git@github.com:user/repo.git"))
+        Assert.assertEquals("http://github.com/user/repo", normalizeRemoteUrl("http://github.com/user/repo.git"))
+        Assert.assertEquals("https://github.com/user/repo", normalizeRemoteUrl("https://github.com/user/repo.git"))
+        Assert.assertEquals("https://github.com/user/repo", normalizeRemoteUrl("git@github.com:user/repo.git"))
     }
 }
